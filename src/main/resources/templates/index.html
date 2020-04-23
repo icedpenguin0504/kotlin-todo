@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>ToDo</title>
+  <!-- bootstarp -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <!-- fontawesome -->
+  <script src="https://kit.fontawesome.com/27dc3161d1.js" crossorigin="anonymous"></script>
+  <!-- my css -->
+  <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body class="bg-gray">
+<header class="container my-5">
+  <div class="inner-container">
+    <div class="logo d-inline-block">
+      <h3 class="d-inline-block text-base-color">ToDo</h3>
+    </div>
+    <div class="text-right">
+      <form action="#" class="d-inline-block underline">
+        <input type="text" class="clear" placeholder="Search">
+        <button type="submit" class="btn">
+          <i class="fas fa-search"></i>
+        </button>
+      </form>
+    </div>
+  </div>
+</header>
+<div class="container">
+  <div class="inner-container">
+    <form action="#" class="bold-underline pb-2">
+      <span class="small-parts"><i class="fas fa-plus"></i></span>
+      <input type="text" class="create-form-input clear" placeholder="Add a to-do">
+      <button type="submit" class="hidden-btn"></button>
+    </form>
+  </div>
+  <div class="inner-container mt-5">
+    <!-- dummy -->
+    <div class="underline mt-3">
+      <button class="btn small-parts">
+        <i class="fas fa-check-square"></i>
+      </button>
+      <p class="d-inline-block">Study English</p>
+      <div class="float-right">
+        <button class="btn small-parts">
+          <i class="fas fa-edit"></i>
+        </button>
+        <button class="btn small-parts">
+          <i class="fas fa-trash-alt"></i>
+        </button>
+      </div>
+    </div>
+    <div class="underline mt-3">
+      <button class="btn small-parts">
+        <i class="far fa-square"></i>
+      </button>
+      <p class="d-inline-block">Study English</p>
+      <div class="float-right">
+        <button class="btn small-parts">
+          <i class="fas fa-edit"></i>
+        </button>
+        <button class="btn small-parts">
+          <i class="fas fa-trash-alt"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
