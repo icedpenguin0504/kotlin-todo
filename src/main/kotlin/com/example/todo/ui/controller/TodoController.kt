@@ -1,4 +1,4 @@
-package com.example.todo.controller;
+package com.example.todo.ui.controller;
 
 import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.RequestMapping

@@ -1,1 +1,9 @@
-
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/kotlin_todo
+    username: root
+    password:
+    initialization-mode: always
+  jpa:
+    hibernate:
+      ddl-auto: none
