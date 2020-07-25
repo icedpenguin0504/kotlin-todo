@@ -24,9 +24,6 @@ class Todo {
     /** タイトル */
     var title: String? = null
 
-    /** 期日 */
-    var deadline: String? = null
-
     /** ステータス */
     var isDone: Boolean = false
 

@@ -13,4 +13,7 @@ class TodoService(
 ) {
   /** 全件取得 */
   fun getAllTodos(): List<Todo> = todoRepository.findByOrderByCreatedAtDesc()
+
+  /** todo登録 */
+  fun registerTodo(todo: Todo): Todo = todoRepository.save(todo)
 }
