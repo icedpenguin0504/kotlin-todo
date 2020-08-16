@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.ModelAttribute
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.servlet.ModelAndView
+import org.springframework.web.servlet.mvc.support.RedirectAttributes
 
 /**
  * ToDoコントローラ
@@ -22,16 +22,23 @@ class TodoController(
 
   @GetMapping
   fun index(model: Model): String {
-    model.addAttribute("todoForm", TodoForm())
+    if (!model.containsAttribute("todoForm")) {
+      model.addAttribute("todoForm", TodoForm())
+    }
     model.addAttribute("todos", todoService.getAllTodos())
     return "index"
   }
 
   @PostMapping("register")
   fun register(
-    @Validated @ModelAttribute("todoForm") todoForm: TodoForm
+    @Validated @ModelAttribute("todoForm") todoForm: TodoForm,
+    redirectAttributes: RedirectAttributes
   ): String {
-    todoService.registerTodo(todoForm.toEntity())
+    val isTitleDuplicated = todoService.isTitleDuplicated(todoForm.title!!)
+    redirectAttributes.addFlashAttribute("isTitleDuplicated", isTitleDuplicated)
+    if (!isTitleDuplicated) {
+      todoService.registerTodo(todoForm.toEntity())
+    }
     return "redirect:/"
   }
 }

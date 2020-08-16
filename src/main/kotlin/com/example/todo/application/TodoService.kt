@@ -16,4 +16,7 @@ class TodoService(
 
   /** todo登録 */
   fun registerTodo(todo: Todo): Todo = todoRepository.save(todo)
+
+  /** 既存タイトルの重複を検出 */
+  fun isTitleDuplicated(title: String): Boolean = todoRepository.findByTitle(title) != null
 }
