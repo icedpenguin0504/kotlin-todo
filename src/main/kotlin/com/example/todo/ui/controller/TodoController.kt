@@ -57,4 +57,20 @@ class TodoController(
     todoService.deleteTodo(id)
     return "redirect:/"
   }
+
+  /**
+   * 編集画面を表示
+   */
+  @GetMapping("{id}")
+  fun showEditPage(
+    model: Model,
+    @PathVariable("id") id: Long
+  ): String {
+    val todo = todoService.getTodoById(id)
+    val todoForm = TodoForm()
+    todoForm.title = todo.title
+    model.addAttribute("todoForm", todoForm)
+    model.addAttribute("id", id)
+    return "edit"
+  }
 }

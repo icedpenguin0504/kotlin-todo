@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html
+        lang="en"
+        xmlns:th="http://www.thymeleaf.org"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="layout">
+<head></head>
+<body>
+<div layout:fragment="content">
+  <div class="inner-container">
+    <p class="text-base-color mb-3">Edit TODO:</p>
+    <form th:action="|/${id}|" th:method="patch" th:object="${todoForm}" class="bold-underline pb-2">
+      <span class="small-parts"><i class="fas fa-plus"></i></span>
+      <input type="text" th:field="*{title}" class="create-form-input clear">
+      <button type="submit" class="hidden-btn"></button>
+    </form>
+    <p th:if="${isTitleDuplicated}" class="text-danger">Todo is already registered</p>
+  </div>
+</div>
+</body>
+</html>
