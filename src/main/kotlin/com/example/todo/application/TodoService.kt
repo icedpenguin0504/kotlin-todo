@@ -19,4 +19,7 @@ class TodoService(
 
   /** 既存タイトルの重複を検出 */
   fun isTitleDuplicated(title: String): Boolean = todoRepository.findByTitle(title) != null
+
+  /** todo削除 */
+  fun deleteTodo(id: Long) = todoRepository.deleteById(id)
 }

@@ -6,8 +6,10 @@ import com.example.todo.ui.form.TodoForm
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
 import org.springframework.validation.annotation.Validated
+import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.ModelAttribute
+import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.servlet.mvc.support.RedirectAttributes
@@ -22,6 +24,7 @@ class TodoController(
   private val todoService: TodoService
 ) {
 
+  /** top画面 */
   @GetMapping
   fun index(model: Model): String {
     if (!model.containsAttribute("todoForm")) {
@@ -31,6 +34,7 @@ class TodoController(
     return "index"
   }
 
+  /** todo登録 */
   @PostMapping("register")
   fun register(
     @Validated @ModelAttribute("todoForm") todoForm: TodoForm,
@@ -44,6 +48,13 @@ class TodoController(
         todoForm.title?.let { Todo.of(title = it) } ?: throw IllegalArgumentException("title must not be null")
       )
     }
+    return "redirect:/"
+  }
+
+  /** todo削除 */
+  @DeleteMapping("{id}")
+  fun delete(@PathVariable("id") id: Long): String {
+    todoService.deleteTodo(id)
     return "redirect:/"
   }
 }

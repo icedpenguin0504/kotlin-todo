@@ -45,9 +45,11 @@
         <button class="btn small-parts">
           <i class="fas fa-edit"></i>
         </button>
-        <button class="btn small-parts">
-          <i class="fas fa-trash-alt"></i>
-        </button>
+        <form th:action="@{/{id}(id=${todo.id})}" th:method="delete" class="d-inline">
+          <button class="btn small-parts">
+            <i class="fas fa-trash-alt"></i>
+          </button>
+        </form>
       </div>
     </div>
   </div>
