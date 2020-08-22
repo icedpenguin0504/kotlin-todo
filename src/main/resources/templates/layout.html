@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html
+        lang="en"
+        xmlns:th="http://www.thymeleaf.org"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+  <meta charset="UTF-8">
+  <title>TODO</title>
+  <!-- bootstarp -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <!-- fontawesome -->
+  <script src="https://kit.fontawesome.com/27dc3161d1.js" crossorigin="anonymous"></script>
+  <!-- my css -->
+  <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body class="bg-gray">
+
+<header class="container my-5">
+  <div class="inner-container">
+    <div class="logo d-inline-block">
+      <h3 class="d-inline-block text-base-color">ToDo</h3>
+    </div>
+    <!--    各ページのヘッダー追加内容-->
+    <section layout:fragment="header-additional"></section>
+  </div>
+</header>
+
+<div class="container">
+<!--  各ページの内容-->
+  <section layout:fragment="content"></section>
+</div>
+
+</body>
+</html>
