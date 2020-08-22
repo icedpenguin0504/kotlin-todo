@@ -28,7 +28,7 @@
 </header>
 <div class="container">
   <div class="inner-container">
-    <form action="/register" method="post" th:object="${todoForm}" class="bold-underline pb-2">
+    <form action="/" method="post" th:object="${todoForm}" class="bold-underline pb-2">
       <span class="small-parts"><i class="fas fa-plus"></i></span>
       <input type="text" th:field="*{title}" class="create-form-input clear" placeholder="Add a to-do">
       <button type="submit" class="hidden-btn"></button>

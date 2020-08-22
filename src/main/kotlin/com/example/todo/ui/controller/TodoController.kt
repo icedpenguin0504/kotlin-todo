@@ -35,7 +35,7 @@ class TodoController(
   }
 
   /** todo登録 */
-  @PostMapping("register")
+  @PostMapping
   fun register(
     @Validated @ModelAttribute("todoForm") todoForm: TodoForm,
     redirectAttributes: RedirectAttributes
