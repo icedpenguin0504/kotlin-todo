@@ -26,7 +26,7 @@ class TodoController(
 
   /** top画面 */
   @GetMapping
-  fun index(model: Model): String {
+  fun showTopPage(model: Model): String {
     if (!model.containsAttribute("todoForm")) {
       model.addAttribute("todoForm", TodoForm())
     }
