@@ -32,9 +32,11 @@
       </button>
       <p class="d-inline-block" th:text="${todo.title}"></p>
       <div class="float-right">
-        <button class="btn small-parts">
-          <i class="fas fa-edit"></i>
-        </button>
+        <form th:action="|/${todo.id}|" th:method="get" class="d-inline">
+          <button class="btn small-parts">
+            <i class="fas fa-edit"></i>
+          </button>
+        </form>
         <form th:action="@{/{id}(id=${todo.id})}" th:method="delete" class="d-inline">
           <button class="btn small-parts">
             <i class="fas fa-trash-alt"></i>

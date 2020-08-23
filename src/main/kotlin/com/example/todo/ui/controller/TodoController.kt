@@ -9,6 +9,7 @@ import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.ModelAttribute
+import org.springframework.web.bind.annotation.PatchMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
@@ -72,5 +73,27 @@ class TodoController(
     model.addAttribute("todoForm", todoForm)
     model.addAttribute("id", id)
     return "edit"
+  }
+
+  /**
+   * todo更新
+   */
+  @PatchMapping("{id}")
+  fun update(
+    @Validated @ModelAttribute("todoForm") todoForm: TodoForm,
+    @PathVariable("id") id: Long,
+    model: Model
+  ): String {
+    lateinit var viewName: String
+    todoForm.title?.let { title ->
+      viewName = if (todoService.isTitleDuplicated(id, title)) {
+        model.addAttribute("isTitleDuplicated", true)
+        "edit"
+      } else {
+        todoService.updateTodo(id, title)
+        "redirect:/"
+      }
+    } ?: throw IllegalArgumentException("Title must not be null")
+    return viewName
   }
 }

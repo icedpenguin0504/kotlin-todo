@@ -25,6 +25,16 @@ class TodoService(
   /** 既存タイトルの重複を検出 */
   fun isTitleDuplicated(title: String): Boolean = todoRepository.findByTitle(title) != null
 
+  /** 異なるIDの既存タイトルとの重複を検出 */
+  fun isTitleDuplicated(id: Long, title: String): Boolean = todoRepository.findByIdNotAndTitle(id, title) != null
+
   /** todo削除 */
   fun deleteTodo(id: Long) = todoRepository.deleteById(id)
+
+  /** todo更新 */
+  fun updateTodo(id: Long, title: String): Todo {
+    val todo = getTodoById(id)
+    todo.title = title
+    return todoRepository.save(todo)
+  }
 }

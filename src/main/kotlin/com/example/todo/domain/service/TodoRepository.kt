@@ -7,4 +7,6 @@ interface TodoRepository: JpaRepository<Todo, Long> {
   fun findByOrderByCreatedAtDesc(): List<Todo>
 
   fun findByTitle(title: String): Todo?
+
+  fun findByIdNotAndTitle(id: Long, title: String): Todo?
 }
