@@ -3,6 +3,7 @@ package com.example.todo.ui.controller
 import com.example.todo.application.TodoService
 import com.example.todo.domain.model.Todo
 import com.example.todo.ui.form.TodoForm
+import com.example.todo.util.MessageUtils
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
 import org.springframework.validation.annotation.Validated
@@ -46,7 +47,8 @@ class TodoController(
     // TODO タイトルのエラーハンドリング
     if (!isTitleDuplicated) {
       todoService.registerTodo(
-        todoForm.title?.let { Todo.of(title = it) } ?: throw IllegalArgumentException("title must not be null")
+        todoForm.title?.let { Todo.of(title = it) }
+          ?: throw IllegalArgumentException(MessageUtils.get("e.0001", arrayOf("Title")))
       )
     }
     return "redirect:/"
@@ -93,7 +95,7 @@ class TodoController(
         todoService.updateTodo(id, title)
         "redirect:/"
       }
-    } ?: throw IllegalArgumentException("Title must not be null")
+    } ?: throw IllegalArgumentException(MessageUtils.get("e.0001", arrayOf("Title")))
     return viewName
   }
 }

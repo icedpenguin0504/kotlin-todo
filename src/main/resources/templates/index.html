@@ -23,7 +23,7 @@
       <input type="text" th:field="*{title}" class="create-form-input clear" placeholder="Add a to-do">
       <button type="submit" class="hidden-btn"></button>
     </form>
-    <p th:if="${isTitleDuplicated}" class="text-danger">Todo is already registered</p>
+    <p th:if="${isTitleDuplicated}" class="text-danger" th:text="#{w.0000}"></p>
   </div>
   <div class="inner-container mt-5" th:each="todo : ${todos}">
     <div class="underline mt-3">

@@ -14,7 +14,7 @@
       <input type="text" th:field="*{title}" class="create-form-input clear">
       <button type="submit" class="hidden-btn"></button>
     </form>
-    <p th:if="${isTitleDuplicated}" class="text-danger">Todo is already registered</p>
+    <p th:if="${isTitleDuplicated}" class="text-danger" th:text="#{w.0000}"></p>
   </div>
 </div>
 </body>

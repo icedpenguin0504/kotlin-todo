@@ -2,6 +2,7 @@ package com.example.todo.application
 
 import com.example.todo.domain.model.Todo
 import com.example.todo.domain.service.TodoRepository
+import com.example.todo.util.MessageUtils
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
 import java.lang.IllegalArgumentException
@@ -17,7 +18,8 @@ class TodoService(
   fun getAllTodos(): List<Todo> = todoRepository.findByOrderByCreatedAtDesc()
 
   /** todoをIDで検索 */
-  fun getTodoById(id: Long): Todo = todoRepository.findByIdOrNull(id) ?: throw IllegalArgumentException("No TODO which has such id")
+  fun getTodoById(id: Long): Todo = todoRepository.findByIdOrNull(id)
+    ?: throw IllegalArgumentException(MessageUtils.get("e.0002", arrayOf("ID")))
 
   /** todo登録 */
   fun registerTodo(todo: Todo): Todo = todoRepository.save(todo)
