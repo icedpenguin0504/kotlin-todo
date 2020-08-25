@@ -8,7 +8,7 @@ import java.util.Properties
  * message.propertiesのメッセージの読み込み
  */
 object MessageUtils {
-  const val MESSAGES_PROPERTIES = "messages.properties"
+  private const val MESSAGES_PROPERTIES = "messages.properties"
 
   /**
    * メッセージ取得
