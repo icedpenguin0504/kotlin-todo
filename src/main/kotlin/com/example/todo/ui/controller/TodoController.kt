@@ -108,9 +108,13 @@ class TodoController(
     @RequestParam("title") title: String,
     model: Model
   ): String {
-    model.addAttribute("todos", todoService.getTodosByTitle(title))
-    model.addAttribute("isFiltered", true)
-    model.addAttribute("query", title)
+    if (title.isBlank()) {
+      model.addAttribute("todos", todoService.getAllTodos())
+    } else {
+      model.addAttribute("todos", todoService.getTodosByTitle(title))
+      model.addAttribute("isFiltered", true)
+      model.addAttribute("query", title)
+    }
     model.addAttribute("todoForm", TodoForm())
     return "index"
   }
