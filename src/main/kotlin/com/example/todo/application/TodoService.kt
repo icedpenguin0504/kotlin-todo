@@ -21,6 +21,8 @@ class TodoService(
   fun getTodoById(id: Long): Todo = todoRepository.findByIdOrNull(id)
     ?: throw IllegalArgumentException(MessageUtils.get("e.0002", arrayOf("ID")))
 
+  fun getTodosByTitle(title: String): List<Todo>? = todoRepository.findByTitleContainingAndIsDoneFalseOrderByCreatedAtDesc(title)
+
   /** todo登録 */
   fun registerTodo(todo: Todo): Todo = todoRepository.save(todo)
 

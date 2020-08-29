@@ -9,4 +9,6 @@ interface TodoRepository: JpaRepository<Todo, Long> {
   fun findByTitle(title: String): Todo?
 
   fun findByIdNotAndTitle(id: Long, title: String): Todo?
+
+  fun findByTitleContainingAndIsDoneFalseOrderByCreatedAtDesc(title: String): List<Todo>?
 }

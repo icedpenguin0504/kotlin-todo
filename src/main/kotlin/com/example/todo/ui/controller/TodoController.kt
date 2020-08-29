@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PatchMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.servlet.mvc.support.RedirectAttributes
 import java.lang.IllegalArgumentException
 
@@ -97,5 +98,20 @@ class TodoController(
       }
     } ?: throw IllegalArgumentException(MessageUtils.get("e.0001", arrayOf("Title")))
     return viewName
+  }
+
+  /**
+   * todo検索
+   */
+  @GetMapping("/search")
+  fun search(
+    @RequestParam("title") title: String,
+    model: Model
+  ): String {
+    model.addAttribute("todos", todoService.getTodosByTitle(title))
+    model.addAttribute("isFiltered", true)
+    model.addAttribute("query", title)
+    model.addAttribute("todoForm", TodoForm())
+    return "index"
   }
 }

@@ -8,16 +8,16 @@
 <body>
 
 <div layout:fragment="header-additional" class="text-right">
-  <form action="#" class="d-inline-block underline">
-    <input type="text" class="clear" placeholder="Search">
-    <button type="submit" class="btn">
+  <form action="/search" method="get" class="d-inline-block underline" id="search">
+    <input type="text" class="clear" placeholder="Search" name="title">
+    <button class="btn">
       <i class="fas fa-search"></i>
     </button>
   </form>
 </div>
 
 <div layout:fragment="content">
-  <div class="inner-container">
+  <div th:unless="${isFiltered}" class="inner-container">
     <form action="/" method="post" th:object="${todoForm}" class="bold-underline pb-2">
       <span class="small-parts"><i class="fas fa-plus"></i></span>
       <input type="text" th:field="*{title}" class="create-form-input clear" placeholder="Add a to-do">
@@ -25,6 +25,11 @@
     </form>
     <p th:if="${isTitleDuplicated}" class="text-danger" th:text="#{w.0000}"></p>
   </div>
+
+  <div th:if="${isFiltered}" class="inner-container mt-5">
+    <p th:text="|Filtered by: &quot;${query}&quot;|"></p>
+  </div>
+
   <div class="inner-container mt-5" th:each="todo : ${todos}">
     <div class="underline mt-3">
       <button class="btn small-parts">
