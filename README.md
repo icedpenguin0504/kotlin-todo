@@ -12,11 +12,13 @@ Kotlinの勉強のために作ってみた簡易ToDoアプリケーション
 - フレームワーク： Spring Boot 2.2.6
 - プロジェクト： Gradle
 - Java 11
-- 依存関係
- - Spring Boot DevTools
- - Spring Web
- - Thymeleaf
- - Spring Data JPA
- - MySQL Driver
+
+依存関係
+
+- Spring Boot DevTools
+- Spring Web
+- Thymeleaf
+- Spring Data JPA
+- MySQL Driver
 
 ## インストール
