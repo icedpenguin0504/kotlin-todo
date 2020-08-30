@@ -34,9 +34,12 @@
 
   <div class="inner-container mt-5" th:each="todo : ${todos}">
     <div class="underline mt-3">
-      <button class="btn small-parts">
-        <i class="fas fa-check-square"></i>
-      </button>
+      <form th:action="|/status/${todo.id}|" th:method="patch" class="d-inline-block">
+        <button class="btn small-parts">
+          <i th:if="${todo.done}" class="fas fa-check-square"></i>
+          <i th:unless="${todo.done}" class="far fa-square"></i>
+        </button>
+      </form>
       <p class="d-inline-block" th:text="${todo.title}"></p>
       <div class="float-right">
         <form th:action="|/${todo.id}|" th:method="get" class="d-inline">

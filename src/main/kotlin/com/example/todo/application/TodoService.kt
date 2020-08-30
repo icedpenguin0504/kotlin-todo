@@ -18,8 +18,7 @@ class TodoService(
   fun getAllTodos(): List<Todo> = todoRepository.findByOrderByCreatedAtDesc()
 
   /** todoをIDで検索 */
-  fun getTodoById(id: Long): Todo = todoRepository.findByIdOrNull(id)
-    ?: throw IllegalArgumentException(MessageUtils.get("e.0002", arrayOf("ID")))
+  fun getTodoById(id: Long): Todo = findTodoById(id)
 
   fun getTodosByTitle(title: String): List<Todo>? = todoRepository.findByTitleContainingAndIsDoneFalseOrderByCreatedAtDesc(title)
 
@@ -41,4 +40,15 @@ class TodoService(
     todo.title = title
     return todoRepository.save(todo)
   }
+
+  /** ステータス反転 */
+  fun toggleStatus(id: Long): Todo {
+    val todo = findTodoById(id)
+    todo.isDone = !todo.isDone
+    return todoRepository.save(todo)
+  }
+
+  /** todoをIDで検索 */
+  private fun findTodoById(id: Long): Todo = todoRepository.findByIdOrNull(id)
+  ?: throw IllegalArgumentException(MessageUtils.get("e.0002", arrayOf("ID")))
 }

@@ -103,7 +103,7 @@ class TodoController(
   /**
    * todo検索
    */
-  @GetMapping("/search")
+  @GetMapping("search")
   fun search(
     @RequestParam("title") title: String,
     model: Model
@@ -117,5 +117,14 @@ class TodoController(
     }
     model.addAttribute("todoForm", TodoForm())
     return "index"
+  }
+
+  /**
+   * todoステータス反転
+   */
+  @PatchMapping("status/{id}")
+  fun toggleStatus(@PathVariable("id") id: Long): String {
+    todoService.toggleStatus(id)
+    return "redirect:/"
   }
 }
